@@ -45,12 +45,13 @@
 //    }
 //}
 
-package com.example.test_mang;
+package com.example.test_mang.Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.example.test_mang.SpeedApplication;
 import javafx.application.Platform;
 
 public class SpeedController {

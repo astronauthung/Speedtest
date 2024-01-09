@@ -1,6 +1,6 @@
 package com.example.test_mang;
 
-import com.example.test_mang.SpeedController;
+import com.example.test_mang.Controller.SpeedController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,12 +21,12 @@ public class SpeedApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Speed.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Network Speed Tracker");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 1300, 600));
         primaryStage.show();
 
         LineChart<Number, Number> lineChart = (LineChart<Number, Number>) root.lookup("#lineChart");
         NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
-        xAxis.setLabel("Time (10 seconds intervals)");
+        xAxis.setLabel("Time");
         NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
         yAxis.setLabel("Speed/Ping");
 
