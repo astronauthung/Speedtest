@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <HBox prefWidth="600.0" spacing="10" style="-fx-background-color: lightgray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox layoutY="4.0" prefHeight="22.0" prefWidth="600.0" spacing="10" style="-fx-background-color: lightgray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Button text="About" />
                 <Button text="History" />
@@ -16,7 +16,7 @@
             </children>
         </HBox>
 
-        <LineChart id="lineChart" layoutX="0.0" layoutY="30.0" prefHeight="370.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+        <LineChart id="lineChart" layoutY="25.0">
             <xAxis>
                 <NumberAxis side="BOTTOM" />
             </xAxis>
@@ -27,16 +27,16 @@
 
 
     </children>
-   <children>
-       <VBox prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #f0f0f0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
-           <children>
-               <Label text="Upload Speed:" />
-               <Label fx:id="uploadSpeedLabel" text="" />
-               <Label text="Download Speed:" />
-               <Label fx:id="downloadSpeedLabel" text="" />
-               <Label text="Ping:" />
-               <Label fx:id="pingLabel" text="" />
-           </children>
-       </VBox>
-   </children>
+<!--   <children>-->
+<!--       <VBox prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #f0f0f0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">-->
+<!--           <children>-->
+<!--               <Label text="Upload Speed:" />-->
+<!--               <Label fx:id="uploadSpeedLabel" text="" />-->
+<!--               <Label text="Download Speed:" />-->
+<!--               <Label fx:id="downloadSpeedLabel" text="" />-->
+<!--               <Label text="Ping:" />-->
+<!--               <Label fx:id="pingLabel" text="" />-->
+<!--           </children>-->
+<!--       </VBox>-->
+<!--   </children>-->
 </AnchorPane>
