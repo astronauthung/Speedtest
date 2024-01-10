@@ -19,8 +19,7 @@ public class LoginPopupController {
     private SpeedApplication speedApp;
     @FXML
     private SpeedController speedController;
-    @FXML
-    private ConnectDBController connectDBController;
+
 
     @FXML
     private TextField usernameField;
@@ -30,9 +29,6 @@ public class LoginPopupController {
     @FXML
     private Label showUsernameLabel;
 
-    public void setConnectDBController(ConnectDBController connectDBController) {
-        this.connectDBController = connectDBController;
-    }
 
     public void setSpeedController(SpeedController speedController) {
         this.speedController = speedController;
@@ -61,7 +57,7 @@ public class LoginPopupController {
                 // After successful login
                 SpeedController speedController = new SpeedController(speedApp);
                 speedController.setLoggedInUserId(id); // Set the user ID in the SpeedController instance
-//                speedController.startTracking();
+                speedController.startTracking();
 
                 handleSuccessfulLogin(username, id);
 
@@ -83,7 +79,7 @@ public class LoginPopupController {
     }
 
     public void handleSuccessfulLogin(String username, int id) {
-        connectDBController.updateLabels(username, id);// Set the logged-in user ID in SpeedController
+        speedController.updateLabels(username, id);// Set the logged-in user ID in SpeedController
     }
     private void showErrorDialog() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
