@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.SignupPopupController">
-   <children>
-   
-       <Label text="Enter Username:" />
-       <TextField fx:id="usernameField" />
-   
-       <Label text="Enter Password:" />
-       <PasswordField fx:id="passwordField" />
-   
-       <Label text="Confirm Password:" />
-       <PasswordField fx:id="confirmPasswordField" />
-   
-       <Button fx:id="showSignupPopup" text="Sign Up" onAction="#submitSignup"/>
-   </children>
-</VBox>
+<AnchorPane prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.SignupPopupController">
+    <children>
+        <Label layoutX="87.0" layoutY="125.0" text="USERNAME" textFill="#d6d5d5">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Label>
+        <TextField fx:id="usernameField" layoutX="87.0" layoutY="156.0" prefHeight="41.0" prefWidth="426.0">
+         <font>
+            <Font name="Montserrat SemiBold" size="14.0" />
+         </font></TextField>
+
+        <Label layoutX="87.0" layoutY="216.0" text="PASSWORD" textFill="#d6d5d5">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Label>
+        <PasswordField fx:id="passwordField" layoutX="87.0" layoutY="242.0" prefHeight="41.0" prefWidth="426.0">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+
+        <Label layoutX="87.0" layoutY="307.0" text="CONFIRM PASSWORD" textFill="#d6d5d5">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Label>
+        <PasswordField fx:id="confirmPasswordField" layoutX="87.0" layoutY="335.0" prefHeight="41.0" prefWidth="426.0">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+
+        <Button fx:id="showSignupPopup" layoutX="87.0" layoutY="398.0" onAction="#submitSignup" prefHeight="41.0" prefWidth="426.0" style="-fx-background-color: #1e90ff;" text="SIGNUP" textFill="WHITE">
+         <font>
+            <Font name="Montserrat ExtraBold" size="12.0" />
+         </font></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="476.0" layoutX="561.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Label layoutX="87.0" layoutY="48.0" text="REGISTER FORM" textFill="DODGERBLUE">
+         <font>
+            <Font name="Montserrat ExtraBold" size="18.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

@@ -22,6 +22,7 @@ public class SpeedApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Speed.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Network Speed Tracker");
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 1335, 750));
         primaryStage.show();
 

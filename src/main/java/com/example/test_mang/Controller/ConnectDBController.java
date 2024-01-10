@@ -88,10 +88,8 @@ public class ConnectDBController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/loginPopup.fxml"));
 
             Parent loginPopup = loader.load();
-            // Get the controller from the loader
             LoginPopupController loginPopupController = loader.getController();
 
-            // Set the ConnectDBController instance
             loginPopupController.setConnectDBController(this);
 
             Stage popupStage = new Stage();
@@ -100,7 +98,6 @@ public class ConnectDBController {
             popupStage.setScene(new Scene(loginPopup));
             popupStage.showAndWait();
 
-            // You may handle the results from the login popup here
         } catch (IOException e) {
             e.printStackTrace();
         }

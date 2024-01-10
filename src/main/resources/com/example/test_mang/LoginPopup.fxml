@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,12 +10,30 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.LoginPopupController">
    <children>
-       <Label layoutX="151.0" layoutY="52.0" text="Enter Username:" />
-       <TextField fx:id="usernameField" layoutX="151.0" layoutY="90.0" />
+       <Label layoutX="91.0" layoutY="120.0" text="USERNAME" textFill="#d6d5d5">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Label>
+       <TextField fx:id="usernameField" layoutX="88.0" layoutY="148.0" prefHeight="40.0" prefWidth="425.0" />
    
-       <Label layoutX="152.0" layoutY="125.0" text="Enter Password:" />
-       <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="142.0" />
+       <Label layoutX="89.0" layoutY="212.0" text="PASSWORD" textFill="#d6d5d5">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Label>
+       <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="239.0" prefHeight="40.0" prefWidth="425.0">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
    
-       <Button layoutX="194.0" layoutY="175.0" onAction="#submitLogin" text="Submit" />
+       <Button layoutX="88.0" layoutY="304.0" onAction="#submitLogin" prefHeight="40.0" prefWidth="425.0" style="-fx-background-color: #1e90ff;" text="LOGIN" textFill="WHITE">
+         <font>
+            <Font name="Montserrat ExtraBold" size="14.0" />
+         </font></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="402.0" layoutX="572.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="28.0" />
+      <Label layoutX="89.0" layoutY="38.0" text="ACCOUNT LOGIN" textFill="DODGERBLUE">
+         <font>
+            <Font name="Montserrat ExtraBold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
