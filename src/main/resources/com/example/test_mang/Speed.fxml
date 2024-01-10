@@ -17,7 +17,7 @@
     <children>
         <HBox layoutY="4.0" prefHeight="22.0" prefWidth="600.0" spacing="10" style="-fx-background-color: lightgray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button text="Login" />
+                <Button text="Login" onAction="#showLoginPopup" />
                 <Button text="Logout" />
                 <Button text="History" />
             <Button mnemonicParsing="false" text="Clear" />

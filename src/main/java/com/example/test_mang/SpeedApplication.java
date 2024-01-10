@@ -18,6 +18,7 @@ public class SpeedApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Speed.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Network Speed Tracker");
