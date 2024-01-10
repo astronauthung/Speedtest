@@ -48,8 +48,14 @@
 package com.example.test_mang.Controller;
 
 import java.io.BufferedReader;
+
+import com.example.test_mang.DatabaseConnection;
+import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import com.example.test_mang.SpeedApplication;
 import javafx.application.Platform;
@@ -80,17 +86,21 @@ public class SpeedController {
         isRunning = false;
     }
 
+    private int loggedInUserId = 0;
+
+    public void setLoggedInUserId(int userId) {
+        loggedInUserId = userId;
+    }
     public void startSpeedTest() {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder();
-            processBuilder.command("speedtest", "--json", "--simple");
+            processBuilder.command("speedtest", "--json");
 
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            String line;
             StringBuilder output = new StringBuilder();
-
+            String line;
             while ((line = reader.readLine()) != null) {
                 output.append(line);
             }
@@ -98,32 +108,66 @@ public class SpeedController {
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 String outputString = output.toString();
-                // Extract the download speed from the output string
-                String downloadSpeedString = outputString.split("Download: ")[1].split(" Mbit/s")[0];
-                double downloadSpeed = Double.parseDouble(downloadSpeedString);
+                JSONObject jsonObject = new JSONObject(outputString);
 
-                // Extract the upload speed from the output string
-                String uploadSpeedString = outputString.split("Upload: ")[1].split(" Mbit/s")[0];
-                double uploadSpeed = Double.parseDouble(uploadSpeedString);
+                // Extract speeds in bits per second
+                double downloadSpeedBps = jsonObject.getDouble("download");
+                double uploadSpeedBps = jsonObject.getDouble("upload");
 
-                // Extract the ping from the output string
-                String pingString = outputString.split("Ping: ")[1].split(" ms")[0];
-                double ping = Double.parseDouble(pingString);
+                // Convert speeds to megabits per second
+                double downloadSpeedMbps = downloadSpeedBps / 1_000_000;
+                double uploadSpeedMbps = uploadSpeedBps / 1_000_000;
 
-                Platform.runLater(() -> {
-                    speedApp.updateChart(uploadSpeed, downloadSpeed, ping);
-                });
+                double ping = jsonObject.getDouble("ping");
+                String ipAddress = jsonObject.getJSONObject("client").getString("ip");
+                String host = jsonObject.getJSONObject("server").getString("host");
+                String city = jsonObject.getJSONObject("server").getString("name");
+                String country = jsonObject.getJSONObject("server").getString("country");
 
-                // Print the download speed, upload speed, and ping to the console for debugging
-                System.out.println("Download speed: " + downloadSpeed + " Mbps");
-                System.out.println("Upload speed: " + uploadSpeed + " Mbps");
+                // For testing or debugging, print the extracted data
+                System.out.println("User Id"+ loggedInUserId);
+                System.out.println("Download speed: " + downloadSpeedMbps + " Mbps");
+                System.out.println("Upload speed: " + uploadSpeedMbps + " Mbps");
                 System.out.println("Ping: " + ping + " ms");
+                System.out.println("IP Address: " + ipAddress);
+                System.out.println("Server Host: " + host);
+                System.out.println("City: " + city);
+                System.out.println("Country: " + country);
+
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+
+                String insertQuery = "INSERT INTO speed_data (user_id, speed_download, speed_upload, speed_ping, speed_ip, speed_host, speed_city, speed_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+                try {
+                    PreparedStatement preparedStatement = connectDB.prepareStatement(insertQuery);
+                    preparedStatement.setInt(1, loggedInUserId);
+                    preparedStatement.setDouble(2, downloadSpeedMbps);
+                    preparedStatement.setDouble(3, uploadSpeedMbps);
+                    preparedStatement.setDouble(4, ping);
+                    preparedStatement.setString(5, ipAddress);
+                    preparedStatement.setString(6, host);
+                    preparedStatement.setString(7, city);
+                    preparedStatement.setString(8, country);
+
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    connectDB.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                // Update the chart or UI with the obtained speed data
+                Platform.runLater(() -> {
+                    speedApp.updateChart(uploadSpeedMbps, downloadSpeedMbps, ping);
+                });
             } else {
-                System.out.println("Error 404");
+                System.out.println("Speedtest command failed with exit code: " + exitVal);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
-}
+    }
+
 
