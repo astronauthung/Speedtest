@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 import org.json.JSONObject;
 public class SpeedController {
@@ -205,7 +207,18 @@ public class SpeedController {
                 String city = jsonObject.getJSONObject("server").getString("name");
                 String country = jsonObject.getJSONObject("server").getString("country");
 
-                // For testing or debugging, print the extracted data
+                String timestamp = jsonObject.getString("timestamp");
+                Instant instant = Instant.parse(timestamp);
+
+                ZonedDateTime gmtDateTime = instant.atZone(ZoneOffset.UTC);
+
+                ZonedDateTime gmtPlus7DateTime = gmtDateTime.withZoneSameInstant(ZoneId.of("GMT+7"));
+
+                LocalDateTime localDateTime = gmtPlus7DateTime.toLocalDateTime();
+
+                String formattedTimestamp = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                System.out.println("Time: " + timestamp);
                 System.out.println("User Id");
                 System.out.println("Download speed: " + downloadSpeedMbps + " Mbps");
                 System.out.println("Upload speed: " + uploadSpeedMbps + " Mbps");
@@ -218,7 +231,7 @@ public class SpeedController {
                 DatabaseConnection connectNow = new DatabaseConnection();
                 Connection connectDB = connectNow.getConnection();
 
-                String insertQuery = "INSERT INTO speed_data (user_id, speed_download, speed_upload, speed_ping, speed_ip, speed_host, speed_city, speed_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String insertQuery = "INSERT INTO speed_data (user_id, speed_download, speed_upload, speed_ping, speed_ip, speed_time, speed_host, speed_city, speed_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 try {
                     PreparedStatement preparedStatement = connectDB.prepareStatement(insertQuery);
@@ -227,9 +240,10 @@ public class SpeedController {
                     preparedStatement.setDouble(3, uploadSpeedMbps);
                     preparedStatement.setDouble(4, ping);
                     preparedStatement.setString(5, ipAddress);
-                    preparedStatement.setString(6, host);
-                    preparedStatement.setString(7, city);
-                    preparedStatement.setString(8, country);
+                    preparedStatement.setString(6, formattedTimestamp);
+                    preparedStatement.setString(7, host);
+                    preparedStatement.setString(8, city);
+                    preparedStatement.setString(9, country);
 
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
@@ -238,7 +252,6 @@ public class SpeedController {
                     e.printStackTrace();
                 }
 
-                // Update the chart or UI with the obtained speed data
                 Platform.runLater(() -> {
                     speedApp.updateChart(uploadSpeedMbps, downloadSpeedMbps, ping);
                 });

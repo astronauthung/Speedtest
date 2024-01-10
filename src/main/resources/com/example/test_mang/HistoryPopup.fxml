@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="480.0" prefWidth="1144.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.HistoryController">
+<AnchorPane prefHeight="480.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.HistoryController">
     <children>
-        <TableView fx:id="tableView" layoutX="25.0" layoutY="109.0" prefHeight="350.0" prefWidth="1095.0">
+        <TableView fx:id="tableView" layoutX="14.0" layoutY="41.0" prefHeight="350.0" prefWidth="1235.0">
             <columns>
                 <!-- Define your table columns here -->
                 <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
@@ -16,17 +16,16 @@
                 <TableColumn fx:id="speedUploadColumn" prefWidth="150" text="Speed Upload" />
                 <TableColumn fx:id="speedPingColumn" prefWidth="150" text="Speed Ping" />
                 <TableColumn fx:id="speedIpColumn" prefWidth="150" text="Speed IP" />
+                <TableColumn fx:id="speedTimeColumn" prefWidth="150" text="Speed Time" />
                 <TableColumn fx:id="speedHostColumn" prefWidth="150" text="Speed Host" />
                 <TableColumn fx:id="speedCityColumn" prefWidth="150" text="Speed City" />
                 <TableColumn fx:id="speedCountryColumn" prefWidth="150" text="Speed Country" />
                 <!-- Add more columns as needed -->
             </columns>
         </TableView>
-        <Label layoutX="530.0" layoutY="45.0" text="HISTORY" textFill="#0284ed">
-            <font>
-                <Font name="Montserrat ExtraBold" size="18.0" />
-            </font>
-        </Label>
-      <Button layoutX="100.0" layoutY="44.0" onAction="#connectButton" mnemonicParsing="false" text="Button" />
+      <Button layoutX="541.0" layoutY="418.0" mnemonicParsing="false" onAction="#connectButton" style="-fx-background-color: #0284ed;" text="CHECK HISTORY" textFill="WHITE">
+         <font>
+            <Font name="Montserrat ExtraBold" size="18.0" />
+         </font></Button>
     </children>
 </AnchorPane>

@@ -10,23 +10,19 @@
     <children>
         <Pane layoutY="4.0" prefHeight="48.0" prefWidth="1300.0" style="-fx-background-color: #0284ed;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button layoutX="413.0" layoutY="10.0" onAction="#showSignupPopup" style="-fx-background-color: #0284ed;" text="Signup" textFill="WHITE">
+                <Button layoutX="455.0" layoutY="10.0" onAction="#showSignupPopup" style="-fx-background-color: #0284ed;" text="Signup" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Button>
-                <Button layoutX="679.0" layoutY="10.0" onAction="#showHistoryPopup" style="-fx-background-color: #0284ed;" text="History" textFill="WHITE">
+                <Button layoutX="640.0" layoutY="10.0" onAction="#showHistoryPopup" style="-fx-background-color: #0284ed;" text="History" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Button>
-            <Button layoutX="600.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0284ed;" text="Clear" onAction="#clearChart" textFill="WHITE">
+                <Button layoutX="548.0" layoutY="10.0" onAction="#showLoginPopup" style="-fx-background-color: #0284ed;" text="Signin" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Button>
-                <Button layoutX="510.0" layoutY="10.0" onAction="#showLoginPopup" style="-fx-background-color: #0284ed;" text="Signin" textFill="WHITE">
-               <font>
-                  <Font name="Montserrat SemiBold" size="14.0" />
-               </font></Button>
-            <Button layoutX="770.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0284ed;" text="Logout" textFill="WHITE">
+            <Button layoutX="736.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0284ed;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>

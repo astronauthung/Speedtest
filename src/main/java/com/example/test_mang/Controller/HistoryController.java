@@ -30,6 +30,9 @@ public class HistoryController {
     private TableColumn<DataModel, String> speedIpColumn;
 
     @FXML
+    private TableColumn<DataModel, String> speedTimeColumn;
+
+    @FXML
     private TableColumn<DataModel, String> speedHostColumn;
 
     @FXML
@@ -53,6 +56,7 @@ public class HistoryController {
         speedUploadColumn.setCellValueFactory(new PropertyValueFactory<>("speedUpload"));
         speedPingColumn.setCellValueFactory(new PropertyValueFactory<>("speedPing"));
         speedIpColumn.setCellValueFactory(new PropertyValueFactory<>("speedIp"));
+        speedTimeColumn.setCellValueFactory(new PropertyValueFactory<>("speedTime"));
         speedHostColumn.setCellValueFactory(new PropertyValueFactory<>("speedHost"));
         speedCityColumn.setCellValueFactory(new PropertyValueFactory<>("speedCity"));
         speedCountryColumn.setCellValueFactory(new PropertyValueFactory<>("speedCountry"));
@@ -68,16 +72,18 @@ public class HistoryController {
         private final String speedUpload;
         private final String speedPing;
         private final String speedIp;
+        private final String speedTime;
         private final String speedHost;
         private final String speedCity;
         private final String speedCountry;
 
-        public DataModel(Integer id, String speedDownload, String speedUpload, String speedPing, String speedIp, String speedHost, String speedCity, String speedCountry) {
+        public DataModel(Integer id, String speedDownload, String speedUpload, String speedPing, String speedIp, String speedtime,String speedHost, String speedCity, String speedCountry) {
             this.id = id;
             this.speedDownload = speedDownload;
             this.speedUpload = speedUpload;
             this.speedPing = speedPing;
             this.speedIp = speedIp;
+            this.speedTime = speedtime;
             this.speedHost = speedHost;
             this.speedCity = speedCity;
             this.speedCountry = speedCountry;
@@ -101,6 +107,9 @@ public class HistoryController {
 
         public String getSpeedIp() {
             return speedIp;
+        }
+        public String getSpeedTime() {
+            return speedTime;
         }
 
         public String getSpeedHost() {
@@ -145,6 +154,7 @@ public class HistoryController {
                         queryOutput.getString("speed_upload"),
                         queryOutput.getString("speed_ping"),
                         queryOutput.getString("speed_ip"),
+                        queryOutput.getString("speed_time"),
                         queryOutput.getString("speed_host"),
                         queryOutput.getString("speed_city"),
                         queryOutput.getString("speed_country")
