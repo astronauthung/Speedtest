@@ -110,6 +110,25 @@ public class SpeedController {
     }
 
     @FXML
+    private void showHistoryPopup(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/HistoryPopup.fxml"));
+            Parent signupPopup = loader.load();
+            SignupPopupController historyPopupController = loader.getController();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Signup");
+            popupStage.setScene(new Scene(signupPopup));
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
+    @FXML
     private void showSignupPopup(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/SignupPopup.fxml"));

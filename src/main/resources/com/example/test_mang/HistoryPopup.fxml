@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="1144.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.HistoryController">
+    <children>
+        <TableView fx:id="tableView" layoutX="25.0" layoutY="109.0" prefHeight="350.0" prefWidth="1095.0">
+            <columns>
+                <!-- Define your table columns here -->
+                <TableColumn prefWidth="50" text="ID" />
+                <TableColumn prefWidth="150" text="Speed Download" />
+                <TableColumn prefWidth="150" text="Speed Upload" />
+                <TableColumn prefWidth="150" text="Speed Ping" />
+                <TableColumn prefWidth="150" text="Speed IP" />
+                <TableColumn prefWidth="150" text="Speed Host" />
+                <TableColumn prefWidth="150" text="Speed City" />
+                <TableColumn prefWidth="150" text="Speed Country" />
+                <!-- Add more columns as needed -->
+            </columns>
+        </TableView>
+        <Label layoutX="530.0" layoutY="45.0" text="HISTORY" textFill="#0284ed">
+            <font>
+                <Font name="Montserrat ExtraBold" size="18.0" />
+            </font>
+        </Label>
+      <Button layoutX="100.0" layoutY="44.0" onAction="#connectButton" mnemonicParsing="false" text="Button" />
+    </children>
+</AnchorPane>

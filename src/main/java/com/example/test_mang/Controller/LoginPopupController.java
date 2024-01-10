@@ -20,6 +20,9 @@ public class LoginPopupController {
     @FXML
     private SpeedController speedController;
 
+    @FXML
+    private HistoryController historyController;
+
 
     @FXML
     private TextField usernameField;
@@ -80,6 +83,7 @@ public class LoginPopupController {
 
     public void handleSuccessfulLogin(String username, int id) {
         speedController.updateLabels(username, id);// Set the logged-in user ID in SpeedController
+//        historyController.updateLabels(username,id);
     }
     private void showErrorDialog() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
