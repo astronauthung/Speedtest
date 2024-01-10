@@ -12,17 +12,12 @@ import java.sql.SQLException;
 
 public class SignupPopupController {
     @FXML
-    private ConnectDBController connectDBController;
-    @FXML
     private TextField usernameField;
     @FXML
     private TextField passwordField;
     @FXML
     private TextField confirmPasswordField;
 
-    public void setConnectDBController (ConnectDBController connectDBController) {
-        this.connectDBController = connectDBController;
-    }
     @FXML
     private void submitSignup() {
         String username = usernameField.getText();
