@@ -18,75 +18,52 @@ public class LoginPopupController {
     private ConnectDBController connectDBController;
 
     @FXML
-    private Label showUsernameLabel;
-    @FXML
-    private Label showIpLabel;
-    @FXML
-    private Label showHostLabel;
-    @FXML
-    private Label showCityLabel;
-    @FXML
-    private Label showCountryLabel;
-
-    @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Label showUsernameLabel;
     public void setConnectDBController(ConnectDBController connectDBController) {
         this.connectDBController = connectDBController;
     }
 
-    // Method to handle successful login
-    public void handleSuccessfulLogin(String username,String ip, String host, String city, String country) {
-        connectDBController.updateLabels(username,ip, host, city, country);
+    public void handleSuccessfulLogin(String username, String id) {
+        connectDBController.updateLabels(username, id);
     }
-
     @FXML
     private void submitLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Database connection parameters
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String connectQuery = "SELECT su.user_id, sd.speed_ip, sd.speed_host, sd.speed_city, sd.speed_country\n" +
-                "FROM speed_user su\n" +
-                "INNER JOIN speed_data sd ON su.user_id = sd.user_id\n" +
-                "WHERE su.user_name = ? AND su.user_pass = ?";
+        String connectQuery = "select * from speed_user where user_name='"+ username +"' and user_pass= '" + password +"'";
+
 
         try {
             PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
 
             ResultSet queryOutput = preparedStatement.executeQuery();
 
             if (queryOutput.next()) {
-                // Valid credentials, login successful
-                String ip = queryOutput.getString("speed_ip");
-                String host = queryOutput.getString("speed_host");
-                String city = queryOutput.getString("speed_city");
-                String country = queryOutput.getString("speed_country");
+                String id = queryOutput.getString("user_id");
+                System.out.println(id);
 
-                // Call method in ConnectDBController to update labels in Speed.fxml
-                handleSuccessfulLogin(username,ip, host, city, country);
+                handleSuccessfulLogin(username, id);
 
-                // Show success message in UI
                 showSuccessMessage();
 
                 System.out.println("Login successful!");
 
-                // Close the login window after a short delay
                 closeLoginWindow();
             } else {
-                // Invalid credentials, display an error message
                 System.out.println("Invalid credentials. Please try again!");
                 showErrorDialog();
             }
 
-            connectDB.close(); // Close the connection after usage
+            connectDB.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

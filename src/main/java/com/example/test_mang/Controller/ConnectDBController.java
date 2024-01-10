@@ -7,20 +7,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ConnectDBController {
     @FXML
     private Label showUsernameLabel;
+    @FXML
+    private Label showUserID;
     @FXML
     private Label showIpLabel;
     @FXML
@@ -29,6 +26,7 @@ public class ConnectDBController {
     private Label showCityLabel;
     @FXML
     private Label showCountryLabel;
+
     public void connectButton(ActionEvent event) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -36,29 +34,57 @@ public class ConnectDBController {
         String connectQuery = "SELECT sd.speed_download, sd.speed_upload, sd.speed_ping, sd.speed_ip, sd.speed_time, sd.speed_host, sd.speed_city, sd.speed_country\n" +
                 "FROM speed_user su\n" +
                 "INNER JOIN speed_data sd ON su.user_id = sd.user_id\n" +
-                "WHERE su.user_id = 1;";
+                "WHERE su.user_id = ?";
 
+        String userId = showUserID.getText();
         try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(connectQuery);
+            PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
+            preparedStatement.setString(1, userId);
+            ResultSet queryOutput = preparedStatement.executeQuery();
 
-            while (queryOutput.next()) {
-//                showUsernameLabel.setText(queryOutput.getString("user_id"));
+            if (queryOutput.next()) {
                 showIpLabel.setText(queryOutput.getString("speed_ip"));
                 showHostLabel.setText(queryOutput.getString("speed_host"));
                 showCityLabel.setText(queryOutput.getString("speed_city"));
                 showCountryLabel.setText(queryOutput.getString("speed_country"));
+            } else {
+                System.out.println("Dont have data with id: " + userId);
+                showIpLabel.setText("");
+                showHostLabel.setText("");
+                showCityLabel.setText("");
+                showCountryLabel.setText("");
             }
+
+            queryOutput.close();
+            preparedStatement.close();
+            connectDB.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     @FXML
+    private void showSignupPopup(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/SignupPopup.fxml"));
+            Parent signupPopup = loader.load();
+            SignupPopupController signupPopupController = loader.getController();
+
+            signupPopupController.setConnectDBController(this);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Signup");
+            popupStage.setScene(new Scene(signupPopup));
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    @FXML
     private void showLoginPopup(ActionEvent event) {
         try {
-
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/loginPopup.fxml"));
 
             Parent loginPopup = loader.load();
@@ -79,13 +105,10 @@ public class ConnectDBController {
             e.printStackTrace();
         }
     }
-    public void updateLabels(String username,String ip, String host, String city, String country) {
-        // Set the received data to the labels in Speed.fxml
+
+    public void updateLabels(String username, String userID) {
         showUsernameLabel.setText(username);
-        showIpLabel.setText(ip);
-        showHostLabel.setText(host);
-        showCityLabel.setText(city);
-        showCountryLabel.setText(country);
+        showUserID.setText(userID);
     }
 
 }

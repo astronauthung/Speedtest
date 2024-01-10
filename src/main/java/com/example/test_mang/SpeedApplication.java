@@ -22,7 +22,7 @@ public class SpeedApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Speed.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Network Speed Tracker");
-        primaryStage.setScene(new Scene(root, 1300, 550));
+        primaryStage.setScene(new Scene(root, 1335, 750));
         primaryStage.show();
 
         LineChart<Number, Number> lineChart = (LineChart<Number, Number>) root.lookup("#lineChart");

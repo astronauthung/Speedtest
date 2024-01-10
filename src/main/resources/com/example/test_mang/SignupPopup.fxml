@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.SignupPopupController">
+   <children>
+   
+       <Label text="Enter Username:" />
+       <TextField fx:id="usernameField" />
+   
+       <Label text="Enter Password:" />
+       <PasswordField fx:id="passwordField" />
+   
+       <Label text="Confirm Password:" />
+       <PasswordField fx:id="confirmPasswordField" />
+   
+       <Button fx:id="showSignupPopup" text="Sign Up" onAction="#submitSignup"/>
+   </children>
+</VBox>

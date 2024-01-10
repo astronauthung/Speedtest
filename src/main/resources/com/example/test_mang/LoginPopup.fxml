@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.test_mang.Controller.LoginPopupController">
-
-    <Label text="Enter Username:" />
-    <TextField fx:id="usernameField" />
-
-    <Label text="Enter Password:" />
-    <PasswordField fx:id="passwordField" />
-
-    <Button text="Submit" onAction="#submitLogin" />
-</VBox>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_mang.Controller.LoginPopupController">
+   <children>
+       <Label layoutX="151.0" layoutY="52.0" text="Enter Username:" />
+       <TextField fx:id="usernameField" layoutX="151.0" layoutY="90.0" />
+   
+       <Label layoutX="152.0" layoutY="125.0" text="Enter Password:" />
+       <PasswordField fx:id="passwordField" layoutX="151.0" layoutY="142.0" />
+   
+       <Button layoutX="194.0" layoutY="175.0" onAction="#submitLogin" text="Submit" />
+   </children>
+</AnchorPane>
