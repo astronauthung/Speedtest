@@ -42,9 +42,8 @@ public class SpeedApplication extends Application {
 
 
         lineChart.getData().addAll(uploadSeries, downloadSeries, pingSeries);
-
         speedController = new SpeedController(this);
-       speedController.startTracking();
+        speedController.startTracking();
     }
 
     public void updateChart(double uploadSpeed, double downloadSpeed, double ping) {
@@ -61,6 +60,12 @@ public class SpeedApplication extends Application {
         uploadSeries.setName(String.format("Upload Speed: %.2f Mbps", uploadSpeed));
         downloadSeries.setName(String.format("Download Speed: %.2f Mbps", downloadSpeed));
         pingSeries.setName(String.format("Ping: %.2f ms", ping));
+    }
+
+    public void clearChartData() {
+        uploadSeries.getData().clear();
+        downloadSeries.getData().clear();
+        pingSeries.getData().clear();
     }
 
     public static void main(String[] args) {
