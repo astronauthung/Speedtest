@@ -18,13 +18,13 @@ public class HistoryController {
     private TableColumn<DataModel, Integer> idColumn;
 
     @FXML
-    private TableColumn<DataModel, Double> speedDownloadColumn;
+    private TableColumn<DataModel, String> speedDownloadColumn;
 
     @FXML
-    private TableColumn<DataModel, Double> speedUploadColumn;
+    private TableColumn<DataModel, String> speedUploadColumn;
 
     @FXML
-    private TableColumn<DataModel, Double> speedPingColumn;
+    private TableColumn<DataModel, String> speedPingColumn;
 
     @FXML
     private TableColumn<DataModel, String> speedIpColumn;
@@ -42,17 +42,88 @@ public class HistoryController {
     private Label showUserID;
 
     private int loggedInUserId = 0;
+    public HistoryController() {
+    }
 
-    public void updateLabels(String username, int userID) {
-        showUserID.setText(String.valueOf(userID));
-        loggedInUserId = Integer.parseInt(showUserID.getText());
+
+    @FXML
+    private void initialize() {
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        speedDownloadColumn.setCellValueFactory(new PropertyValueFactory<>("speedDownload"));
+        speedUploadColumn.setCellValueFactory(new PropertyValueFactory<>("speedUpload"));
+        speedPingColumn.setCellValueFactory(new PropertyValueFactory<>("speedPing"));
+        speedIpColumn.setCellValueFactory(new PropertyValueFactory<>("speedIp"));
+        speedHostColumn.setCellValueFactory(new PropertyValueFactory<>("speedHost"));
+        speedCityColumn.setCellValueFactory(new PropertyValueFactory<>("speedCity"));
+        speedCountryColumn.setCellValueFactory(new PropertyValueFactory<>("speedCountry"));
+    }
+
+    public void setLoggedInUserId(int loggedInUserId) {
+        this.loggedInUserId = loggedInUserId;
+    }
+
+    public static class DataModel {
+        private final Integer id;
+        private final String speedDownload;
+        private final String speedUpload;
+        private final String speedPing;
+        private final String speedIp;
+        private final String speedHost;
+        private final String speedCity;
+        private final String speedCountry;
+
+        public DataModel(Integer id, String speedDownload, String speedUpload, String speedPing, String speedIp, String speedHost, String speedCity, String speedCountry) {
+            this.id = id;
+            this.speedDownload = speedDownload;
+            this.speedUpload = speedUpload;
+            this.speedPing = speedPing;
+            this.speedIp = speedIp;
+            this.speedHost = speedHost;
+            this.speedCity = speedCity;
+            this.speedCountry = speedCountry;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getSpeedDownload() {
+            return speedDownload;
+        }
+
+        public String getSpeedUpload() {
+            return speedUpload;
+        }
+
+        public String getSpeedPing() {
+            return speedPing;
+        }
+
+        public String getSpeedIp() {
+            return speedIp;
+        }
+
+        public String getSpeedHost() {
+            return speedHost;
+        }
+
+        public String getSpeedCity() {
+            return speedCity;
+        }
+
+        public String getSpeedCountry() {
+            return speedCountry;
+        }
+// Add getters for all fields here
+        // For brevity, not included in this example
     }
     @FXML
-    private void connectButton() {
+    void connectButton() {
+        System.out.println(loggedInUserId);
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String connectQuery = "SELECT sd.speed_download, sd.speed_upload, sd.speed_ping, sd.speed_ip, sd.speed_time, sd.speed_host, sd.speed_city, sd.speed_country\n" +
+        String connectQuery = "SELECT su.user_id,sd.speed_download, sd.speed_upload, sd.speed_ping, sd.speed_ip, sd.speed_time, sd.speed_host, sd.speed_city, sd.speed_country\n" +
                 "FROM speed_user su\n" +
                 "INNER JOIN speed_data sd ON su.user_id = sd.user_id\n" +
                 "WHERE su.user_id = ?";
@@ -69,10 +140,10 @@ public class HistoryController {
             while (queryOutput.next()) {
                 // Create DataModel objects and add them to the table
                 DataModel data = new DataModel(
-                        queryOutput.getInt("id"),
-                        queryOutput.getDouble("speed_download"),
-                        queryOutput.getDouble("speed_upload"),
-                        queryOutput.getDouble("speed_ping"),
+                        queryOutput.getInt("user_id"),
+                        queryOutput.getString("speed_download"),
+                        queryOutput.getString("speed_upload"),
+                        queryOutput.getString("speed_ping"),
                         queryOutput.getString("speed_ip"),
                         queryOutput.getString("speed_host"),
                         queryOutput.getString("speed_city"),
@@ -90,28 +161,5 @@ public class HistoryController {
     }
 
     // DataModel class representing your data structure
-    public static class DataModel {
-        private final Integer id;
-        private final Double speedDownload;
-        private final Double speedUpload;
-        private final Double speedPing;
-        private final String speedIp;
-        private final String speedHost;
-        private final String speedCity;
-        private final String speedCountry;
 
-        public DataModel(Integer id, Double speedDownload, Double speedUpload, Double speedPing, String speedIp, String speedHost, String speedCity, String speedCountry) {
-            this.id = id;
-            this.speedDownload = speedDownload;
-            this.speedUpload = speedUpload;
-            this.speedPing = speedPing;
-            this.speedIp = speedIp;
-            this.speedHost = speedHost;
-            this.speedCity = speedCity;
-            this.speedCountry = speedCountry;
-        }
-
-        // Add getters for all fields here
-        // For brevity, not included in this example
-    }
 }

@@ -35,7 +35,7 @@ public class SpeedController {
     private Label showCityLabel;
     @FXML
     private Label showCountryLabel;
-
+    @FXML
     private SpeedApplication speedApp;
     private boolean isRunning;
 
@@ -113,19 +113,23 @@ public class SpeedController {
     private void showHistoryPopup(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/HistoryPopup.fxml"));
-            Parent signupPopup = loader.load();
-            SignupPopupController historyPopupController = loader.getController();
+            Parent root = loader.load();
+            HistoryController historyController = loader.getController(); // Update to HistoryController
+
+            // You should call the method in HistoryController to connect data
+            historyController.setLoggedInUserId(loggedInUserId);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("Signup");
-            popupStage.setScene(new Scene(signupPopup));
+            popupStage.setTitle("History");
+            popupStage.setScene(new Scene(root));
             popupStage.showAndWait();
 
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
+
 
 
     @FXML
@@ -248,6 +252,12 @@ public class SpeedController {
 
     public void setLoggedInUserId(int id) {
         loggedInUserId = id;
+    }
+
+    public void clearChart(ActionEvent actionEvent) {
+        Platform.runLater(() -> {
+            speedApp.clearChartData();
+        });
     }
 }
 

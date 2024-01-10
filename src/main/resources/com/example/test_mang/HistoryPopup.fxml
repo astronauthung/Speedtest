@@ -11,14 +11,14 @@
         <TableView fx:id="tableView" layoutX="25.0" layoutY="109.0" prefHeight="350.0" prefWidth="1095.0">
             <columns>
                 <!-- Define your table columns here -->
-                <TableColumn prefWidth="50" text="ID" />
-                <TableColumn prefWidth="150" text="Speed Download" />
-                <TableColumn prefWidth="150" text="Speed Upload" />
-                <TableColumn prefWidth="150" text="Speed Ping" />
-                <TableColumn prefWidth="150" text="Speed IP" />
-                <TableColumn prefWidth="150" text="Speed Host" />
-                <TableColumn prefWidth="150" text="Speed City" />
-                <TableColumn prefWidth="150" text="Speed Country" />
+                <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+                <TableColumn fx:id="speedDownloadColumn" prefWidth="150" text="Speed Download" />
+                <TableColumn fx:id="speedUploadColumn" prefWidth="150" text="Speed Upload" />
+                <TableColumn fx:id="speedPingColumn" prefWidth="150" text="Speed Ping" />
+                <TableColumn fx:id="speedIpColumn" prefWidth="150" text="Speed IP" />
+                <TableColumn fx:id="speedHostColumn" prefWidth="150" text="Speed Host" />
+                <TableColumn fx:id="speedCityColumn" prefWidth="150" text="Speed City" />
+                <TableColumn fx:id="speedCountryColumn" prefWidth="150" text="Speed Country" />
                 <!-- Add more columns as needed -->
             </columns>
         </TableView>
