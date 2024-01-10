@@ -34,17 +34,16 @@
         </LineChart>
       <Pane layoutX="1060.0" layoutY="48.0" prefHeight="355.0" prefWidth="200.0">
          <children>
-              
-                        <Label fx:id="showUsernameLabel" layoutX="3.0" layoutY="14.0" prefHeight="48.0" prefWidth="191.0" text="[USerName]" />
-                  <Button fx:id="connectButton" layoutX="2.0" layoutY="264.0" mnemonicParsing="false" onAction="#connectButton" prefHeight="33.0" prefWidth="197.0" text="Connect" textFill="#20a1d3">
-                      <font>
-                          <Font name="Montserrat SemiBold" size="14.0" />
-                      </font>
-                  </Button>
-            <Label layoutX="2.0" layoutY="62.0" prefHeight="40.0" prefWidth="197.0" text="Ip" />
-            <Label layoutX="3.0" layoutY="106.0" prefHeight="33.0" prefWidth="191.0" text="Host" />
-            <Label layoutX="3.0" layoutY="146.0" prefHeight="40.0" prefWidth="191.0" text="City" />
-            <Label layoutX="3.0" layoutY="201.0" prefHeight="48.0" prefWidth="191.0" text="Country" />
+             <Label fx:id="showUsernameLabel" layoutX="3.0" layoutY="14.0" prefHeight="48.0" prefWidth="191.0" text="[USerName]" />
+             <Button fx:id="connectButton" layoutX="2.0" layoutY="264.0" mnemonicParsing="false" onAction="#connectButton" prefHeight="33.0" prefWidth="197.0" text="Connect" textFill="#20a1d3">
+                 <font>
+                     <Font name="Montserrat SemiBold" size="14.0" />
+                 </font>
+             </Button>
+             <Label fx:id="showIpLabel" layoutX="2.0" layoutY="62.0" prefHeight="40.0" prefWidth="197.0" text="Ip" />
+             <Label fx:id="showHostLabel" layoutX="3.0" layoutY="106.0" prefHeight="33.0" prefWidth="191.0" text="Host" />
+             <Label fx:id="showCityLabel" layoutX="3.0" layoutY="146.0" prefHeight="40.0" prefWidth="191.0" text="City" />
+             <Label fx:id="showCountryLabel" layoutX="3.0" layoutY="201.0" prefHeight="48.0" prefWidth="191.0" text="Country" />
          </children>
       </Pane>
 
