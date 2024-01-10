@@ -21,7 +21,7 @@ public class SpeedApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Speed.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Network Speed Tracker");
-        primaryStage.setScene(new Scene(root, 1300, 600));
+        primaryStage.setScene(new Scene(root, 1300, 550));
         primaryStage.show();
 
         LineChart<Number, Number> lineChart = (LineChart<Number, Number>) root.lookup("#lineChart");
@@ -50,11 +50,11 @@ public class SpeedApplication extends Application {
         pingSeries.getData().add(new XYChart.Data<>(pingSeries.getData().size(), ping));
 
         // Limit the data points to maintain a certain window, e.g., last 10 points
-        if (uploadSeries.getData().size() > 10) {
-            uploadSeries.getData().remove(0);
-            downloadSeries.getData().remove(0);
-            pingSeries.getData().remove(0);
-        }
+//        if (uploadSeries.getData().size() > 10) {
+//            uploadSeries.getData().remove(0);
+//            downloadSeries.getData().remove(0);
+//            pingSeries.getData().remove(0);
+//        }
         uploadSeries.setName(String.format("Upload Speed: %.2f Mbps", uploadSpeed));
         downloadSeries.setName(String.format("Download Speed: %.2f Mbps", downloadSpeed));
         pingSeries.setName(String.format("Ping: %.2f ms", ping));

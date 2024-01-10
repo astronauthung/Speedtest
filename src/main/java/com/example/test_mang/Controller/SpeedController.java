@@ -119,7 +119,7 @@ public class SpeedController {
                 System.out.println("Upload speed: " + uploadSpeed + " Mbps");
                 System.out.println("Ping: " + ping + " ms");
             } else {
-                // Handle the case where the speedtest command fails
+                System.out.println("Error 404");
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

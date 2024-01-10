@@ -17,14 +17,14 @@ public class ConnectDBController {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String connectQuery = "Select speed_download from speed_result";
+        String connectQuery = "select username from speed_data";
 
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
             while (queryOutput.next()) {
-                showUsernameLabel.setText(queryOutput.getString("speed_download"));
+                showUsernameLabel.setText(queryOutput.getString("username"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
