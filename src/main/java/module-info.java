@@ -12,6 +12,7 @@ module com.example.test_mang {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires mysql.connector.j;
+    requires org.json;
 
     opens com.example.test_mang to javafx.fxml;
     exports com.example.test_mang;

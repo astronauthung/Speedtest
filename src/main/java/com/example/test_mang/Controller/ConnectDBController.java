@@ -1,6 +1,7 @@
 package com.example.test_mang.Controller;
 
 import com.example.test_mang.DatabaseConnection;
+import com.example.test_mang.SpeedApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ import java.sql.*;
 
 public class ConnectDBController {
     @FXML
+    private SpeedController speedController;
+    @FXML
     private Label showUsernameLabel;
     @FXML
     private Label showUserID;
@@ -26,7 +29,11 @@ public class ConnectDBController {
     private Label showCityLabel;
     @FXML
     private Label showCountryLabel;
+    private SpeedApplication speedApp;
 
+    public ConnectDBController() {
+        this.speedController = new SpeedController(speedApp);
+    }
     public void connectButton(ActionEvent event) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -91,6 +98,8 @@ public class ConnectDBController {
             LoginPopupController loginPopupController = loader.getController();
 
             loginPopupController.setConnectDBController(this);
+            loginPopupController.setSpeedController(this.speedController);
+            
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -103,9 +112,9 @@ public class ConnectDBController {
         }
     }
 
-    public void updateLabels(String username, String userID) {
+    public void updateLabels(String username, int userID) {
         showUsernameLabel.setText(username);
-        showUserID.setText(userID);
+        showUserID.setText(String.valueOf(userID));
     }
 
 }

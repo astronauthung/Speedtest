@@ -1,5 +1,6 @@
 package com.example.test_mang;
 
+import com.example.test_mang.Controller.LoginPopupController;
 import com.example.test_mang.Controller.SpeedController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class SpeedApplication extends Application {
         lineChart.getData().addAll(uploadSeries, downloadSeries, pingSeries);
 
         speedController = new SpeedController(this);
-        speedController.startTracking();
+       speedController.startTracking();
     }
 
     public void updateChart(double uploadSpeed, double downloadSpeed, double ping) {

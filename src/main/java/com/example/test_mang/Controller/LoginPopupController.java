@@ -1,5 +1,6 @@
 package com.example.test_mang.Controller;
 
+import com.example.test_mang.SpeedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -15,6 +16,10 @@ import java.sql.SQLException;
 
 public class LoginPopupController {
     @FXML
+    private SpeedApplication speedApp;
+    @FXML
+    private SpeedController speedController;
+    @FXML
     private ConnectDBController connectDBController;
 
     @FXML
@@ -24,13 +29,16 @@ public class LoginPopupController {
     private PasswordField passwordField;
     @FXML
     private Label showUsernameLabel;
+
     public void setConnectDBController(ConnectDBController connectDBController) {
         this.connectDBController = connectDBController;
     }
 
-    public void handleSuccessfulLogin(String username, String id) {
-        connectDBController.updateLabels(username, id);
+    public void setSpeedController(SpeedController speedController) {
+        this.speedController = speedController;
     }
+
+
     @FXML
     private void submitLogin() {
         String username = usernameField.getText();
@@ -48,8 +56,12 @@ public class LoginPopupController {
             ResultSet queryOutput = preparedStatement.executeQuery();
 
             if (queryOutput.next()) {
-                String id = queryOutput.getString("user_id");
+                int id = queryOutput.getInt("user_id");
                 System.out.println(id);
+                // After successful login
+                SpeedController speedController = new SpeedController(speedApp);
+                speedController.setLoggedInUserId(id); // Set the user ID in the SpeedController instance
+//                speedController.startTracking();
 
                 handleSuccessfulLogin(username, id);
 
@@ -70,6 +82,9 @@ public class LoginPopupController {
 
     }
 
+    public void handleSuccessfulLogin(String username, int id) {
+        connectDBController.updateLabels(username, id);// Set the logged-in user ID in SpeedController
+    }
     private void showErrorDialog() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("Login Failed");
