@@ -37,6 +37,7 @@ public class SpeedApplication extends Application {
         pingSeries = new XYChart.Series<>();
         pingSeries.setName("Ping");
 
+
         lineChart.getData().addAll(uploadSeries, downloadSeries, pingSeries);
 
         speedController = new SpeedController(this);
@@ -54,6 +55,9 @@ public class SpeedApplication extends Application {
             downloadSeries.getData().remove(0);
             pingSeries.getData().remove(0);
         }
+        uploadSeries.setName(String.format("Upload Speed: %.2f Mbps", uploadSpeed));
+        downloadSeries.setName(String.format("Download Speed: %.2f Mbps", downloadSpeed));
+        pingSeries.setName(String.format("Ping: %.2f ms", ping));
     }
 
     public static void main(String[] args) {
