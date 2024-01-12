@@ -143,11 +143,10 @@ public class HistoryController {
             preparedStatement.setString(1, String.valueOf(loggedInUserId));
             ResultSet queryOutput = preparedStatement.executeQuery();
 
-            // Clear previous table data
             tableView.getItems().clear();
 
             while (queryOutput.next()) {
-                // Create DataModel objects and add them to the table
+
                 DataModel data = new DataModel(
                         queryOutput.getInt("user_id"),
                         queryOutput.getString("speed_download"),
@@ -170,6 +169,5 @@ public class HistoryController {
         }
     }
 
-    // DataModel class representing your data structure
 
 }

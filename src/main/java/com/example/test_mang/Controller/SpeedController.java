@@ -116,9 +116,8 @@ public class SpeedController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/test_mang/HistoryPopup.fxml"));
             Parent root = loader.load();
-            HistoryController historyController = loader.getController(); // Update to HistoryController
+            HistoryController historyController = loader.getController();
 
-            // You should call the method in HistoryController to connect data
             historyController.setLoggedInUserId(loggedInUserId);
 
             Stage popupStage = new Stage();
@@ -193,11 +192,9 @@ public class SpeedController {
                 String outputString = output.toString();
                 JSONObject jsonObject = new JSONObject(outputString);
 
-                // Extract speeds in bits per second
                 double downloadSpeedBps = jsonObject.getDouble("download");
                 double uploadSpeedBps = jsonObject.getDouble("upload");
 
-                // Convert speeds to megabits per second
                 double downloadSpeedMbps = downloadSpeedBps / 1_000_000;
                 double uploadSpeedMbps = uploadSpeedBps / 1_000_000;
 

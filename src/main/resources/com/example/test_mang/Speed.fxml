@@ -40,7 +40,7 @@
         </LineChart>
       <Pane layoutX="1067.0" layoutY="73.0" prefHeight="568.0" prefWidth="238.0">
          <children>
-             <Label fx:id="showUsernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="35.0" prefHeight="33.0" prefWidth="97.0" textAlignment="CENTER">
+             <Label fx:id="showUsernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="113.0" prefHeight="33.0" prefWidth="97.0" textAlignment="CENTER">
                <font>
                   <Font name="Montserrat SemiBold" size="20.0" />
                </font></Label>
@@ -49,23 +49,23 @@
                      <Font name="Montserrat SemiBold" size="14.0" />
                  </font>
              </Button>
-             <Label fx:id="showIpLabel" layoutX="117.0" layoutY="115.0" prefHeight="33.0" prefWidth="97.0" textFill="#e83b2b">
+             <Label fx:id="showIpLabel" layoutX="110.0" layoutY="251.0" prefHeight="33.0" prefWidth="97.0" textFill="#e83b2b">
                <font>
                   <Font name="Montserrat SemiBold Italic" size="14.0" />
                </font></Label>
-             <Label fx:id="showHostLabel" layoutX="121.0" layoutY="196.0" prefHeight="33.0" prefWidth="101.0" textFill="#e83b2b">
+             <Label fx:id="showHostLabel" layoutX="121.0" layoutY="318.0" prefHeight="33.0" prefWidth="101.0" textFill="#e83b2b">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Label>
-             <Label fx:id="showCityLabel" layoutX="123.0" layoutY="290.0" prefHeight="40.0" prefWidth="92.0" textFill="#e83b2b">
+             <Label fx:id="showCityLabel" layoutX="119.0" layoutY="382.0" prefHeight="40.0" prefWidth="92.0" textFill="#e83b2b">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Label>
-             <Label fx:id="showCountryLabel" layoutX="125.0" layoutY="397.0" prefHeight="33.0" prefWidth="92.0" textFill="#e83b2b">
+             <Label fx:id="showCountryLabel" layoutX="121.0" layoutY="450.0" prefHeight="33.0" prefWidth="92.0" textFill="#e83b2b">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font></Label>
-            <Label fx:id="showUserID" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="68.0" prefHeight="33.0" prefWidth="61.0" textAlignment="CENTER" textFill="#d04343">
+            <Label fx:id="showUserID" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="183.0" prefHeight="33.0" prefWidth="61.0" textAlignment="CENTER" textFill="#d04343">
                <font>
                   <Font name="Montserrat SemiBold" size="20.0" />
                </font></Label>
@@ -74,22 +74,32 @@
                   <Font name="Montserrat ExtraBold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="6.0" layoutY="122.0" text="Your IP:">
+            <Label layoutX="4.0" layoutY="258.0" text="Your IP:">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="4.0" layoutY="203.0" text="Your host:">
+            <Label layoutX="4.0" layoutY="325.0" text="Your host:">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="6.0" layoutY="301.0" text="Your city:">
+            <Label layoutX="4.0" layoutY="393.0" text="Your city:">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="7.0" layoutY="404.0" text="Your country:">
+            <Label layoutX="4.0" layoutY="457.0" text="Your country:">
+               <font>
+                  <Font name="Montserrat SemiBold" size="14.0" />
+               </font>
+            </Label>
+            <Label  layoutX= "4.0" layoutY="120.0" text="Username:">
+               <font>
+                  <Font name="Montserrat SemiBold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="190.0" text="UID">
                <font>
                   <Font name="Montserrat SemiBold" size="14.0" />
                </font>

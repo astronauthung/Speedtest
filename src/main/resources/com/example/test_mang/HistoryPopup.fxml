@@ -10,7 +10,6 @@
     <children>
         <TableView fx:id="tableView" layoutX="14.0" layoutY="41.0" prefHeight="350.0" prefWidth="1235.0">
             <columns>
-                <!-- Define your table columns here -->
                 <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
                 <TableColumn fx:id="speedDownloadColumn" prefWidth="150" text="Speed Download" />
                 <TableColumn fx:id="speedUploadColumn" prefWidth="150" text="Speed Upload" />
@@ -20,7 +19,6 @@
                 <TableColumn fx:id="speedHostColumn" prefWidth="150" text="Speed Host" />
                 <TableColumn fx:id="speedCityColumn" prefWidth="150" text="Speed City" />
                 <TableColumn fx:id="speedCountryColumn" prefWidth="150" text="Speed Country" />
-                <!-- Add more columns as needed -->
             </columns>
         </TableView>
       <Button layoutX="541.0" layoutY="418.0" mnemonicParsing="false" onAction="#connectButton" style="-fx-background-color: #0284ed;" text="CHECK HISTORY" textFill="WHITE">
